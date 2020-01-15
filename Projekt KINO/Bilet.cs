@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class Bilet : DaneBiletu
+   public class Bilet : DaneBiletu
     {
         public enum znizki { uczen, student, senior, normalny };
         private znizki znizka;

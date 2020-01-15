@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class Sala
+    [Serializable]
+    public class Sala
     {
         private string NumerSali;
         private int IloscMiejsc;
@@ -32,6 +33,10 @@ namespace Projekt_KINO
         public int IloscMiejscWRzedzie { get => iloscMiejscWRzedzie; set => iloscMiejscWRzedzie = value; }
         public bool[,] Miejsca1 { get => miejsca; set => miejsca = value; }
 
+        public Sala()
+        {
+
+        }
         public Sala(string NumerSali, int IloscMiejsc, int iloscRzedow, int iloscMiejscWRzedzie)
         {
             this.NumerSali = NumerSali;

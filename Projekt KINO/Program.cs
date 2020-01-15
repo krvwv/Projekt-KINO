@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projekt_KINO
 {
@@ -33,7 +36,6 @@ namespace Projekt_KINO
             CinemaCity.DodajSeans(seans2);*/
             #endregion
             Kino CinemaCity = Funkcje.InizjalizacjaKina();
-
             Menu menu = new Menu();
             int wybor;
             do
@@ -51,15 +53,25 @@ namespace Projekt_KINO
                         break;
                     case 3:
                         Widz widz = Funkcje.Uzytkownik();
+                        widz.DodajKlienta(widz);
                         Console.WriteLine("Wybierz numer seansu, na który chcesz się wybrać: ");
                         Seans zarezerwowany= Rezerwacja.WybierzSeans(CinemaCity);
-                        Rezerwacja.WyborMiejsca(zarezerwowany);                
-                        Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
-                        //Console.WriteLine(r);                      
-                        Menu.PokazMenu();
+                        //Rezerwacja.WyborMiejsca(zarezerwowany); 
+                        if(Rezerwacja.WyborMiejsca(zarezerwowany)==1)
+                        {                        
+                            Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
+                            widz.DodajRezerwacje(r);                
+                            //tutaj jakas serializacja do xmla ale array nie chce przejsc to trzeba jakos obejsc mądrze
+                        }
+                        else
+                        {
+                            Console.WriteLine("Próba rezerwacji nie powiodła się.");
+                        } 
+                        widz.PokazRezerwacje();
+                        //Menu.PokazMenu();
                         break;
                     case 4:
-                        Console.WriteLine("Case 4");
+                        //pokazanie rezerwacji u widza
                         break;
                     case 5:
                         wybor = 666;

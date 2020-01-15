@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
+    [Serializable]
     public enum czy_3D { tak, nie };
-    class Kino
+    public class Kino
     {
         private string nazwaKina;
         private string miasto;
@@ -19,7 +20,7 @@ namespace Projekt_KINO
         public string NazwaKina { get => nazwaKina; set => nazwaKina = value; }
         public string Miasto { get => miasto; set => miasto = value; }
         public static int IloscSal { get => iloscSal; set => iloscSal = value; }
-        internal List<Film> Filmy { get => filmy; set => filmy = value; }
+        public List<Film> Filmy { get => filmy; set => filmy = value; }
         public List<Seans> Seanse { get => seanse; set => seanse = value; }
 
         static Kino()

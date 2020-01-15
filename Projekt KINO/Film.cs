@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class Film
+    [Serializable]
+    public class Film
     {
         public enum narracja { napisy, dubbing};
         public enum gatunki { komedia, romans, horror, dramat, thriller, akcja, kryminał, dokument}

@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Projekt_KINO
 { 
-    class Seans
+    [Serializable]
+    public class Seans
     {
         private string numerSeansu;
         private DateTime data;
@@ -14,18 +15,22 @@ namespace Projekt_KINO
         private static int numer;
         private int iloscMiejsc;
         private int iloscMiejscWolnych;
-        private bool[,] WszystkieMiejsca;
+        [NonSerialized] private bool[,] WszystkieMiejsca;
         public string NumerSeansu { get => numerSeansu; set => numerSeansu = value; }
         public DateTime Data { get => data; set => data = value; }
-        internal Sala Sala { get => sala; set => sala = value; }
-        internal Film Film { get => film; set => film = value; }
+        public Sala Sala { get => sala; set => sala = value; }
+       public Film Film { get => film; set => film = value; }
         public int IloscMiejsc { get => iloscMiejsc; set => iloscMiejsc = value; }
         public int IloscMiejscWolnych { get => iloscMiejscWolnych; set => iloscMiejscWolnych = value; }
-        public bool[,] WszystkieMiejsca1 { get => WszystkieMiejsca; set => WszystkieMiejsca = value; }
+        internal bool[,] WszystkieMiejsca1 { get => WszystkieMiejsca; set => WszystkieMiejsca = value; }
 
         static Seans()
         {
             numer = 0;
+        }
+        public Seans()
+        {
+
         }
         public Seans(DateTime data, Sala sala, Film film)
         {

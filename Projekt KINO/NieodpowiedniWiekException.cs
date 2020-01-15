@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class NieodpowiedniWiekException:Exception
+    [Serializable]
+    public class NieodpowiedniWiekException:Exception
     {
         public NieodpowiedniWiekException(string m)
         {

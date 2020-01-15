@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class Funkcje
+    public class Funkcje
     {
         public static Kino InizjalizacjaKina()
         {
@@ -56,9 +56,14 @@ namespace Projekt_KINO
             {
                 Console.WriteLine("Ups, coś poszło nie tak!");
                 return def; //tutaj jeszcze dopisać powrót do ponownego wyboru
-            }
-            
+            }         
         }
+       public void Logowanie()
+        {
+            Console.WriteLine("Podaj login i hasło.");
+            string login = Console.ReadLine();
+            string haslo = Console.ReadLine();
 
+        }
     }
 }

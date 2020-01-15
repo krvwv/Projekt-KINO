@@ -5,22 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Projekt_KINO
 {
-    class Rezerwacja
+    [Serializable]
+    public class Rezerwacja
     {
         private string numerRezerwacji;
         private Seans seanse;
         private Widz widz;
         private DaneBiletu bilet;
         private static int numer;
-
         public string NumerRezerwacji { get => numerRezerwacji; set => numerRezerwacji = value; }
-        internal Seans Seans { get => seanse; set => seanse = value; }
-        internal Widz Widz { get => widz; set => widz = value; }
-        internal DaneBiletu Bilet { get => bilet; set => bilet = value; }
+        public Seans Seans { get => seanse; set => seanse = value; }
+        public Widz Widz { get => widz; set => widz = value; }
+        public DaneBiletu Bilet { get => bilet; set => bilet = value; }
         public static int Numer { get => numer; set => numer = value; }
         static Rezerwacja()
         {
             Numer = 0;
+        }
+        public Rezerwacja()
+        {
+
         }
         public Rezerwacja(Seans seans, Widz widz/* ,DaneBiletu bilet*/)
         {
@@ -50,7 +54,7 @@ namespace Projekt_KINO
             Seans se = k.Seanse.Find(i => i.NumerSeansu == s);
             return se;
         }
-        public static void WyborMiejsca(Seans s)
+        public static int WyborMiejsca(Seans s)
         {          
             int rzad, kolumna;
             Console.WriteLine("Dostêpne miejsca: ");
@@ -77,14 +81,13 @@ namespace Projekt_KINO
             {
                 s.WszystkieMiejsca1[rzad, kolumna] = true;
                 Console.WriteLine("Sukces!");
+                return 1;
             }
             else
             {
                 Console.WriteLine("Podane miejsce zosta³o ju¿ zarezerwowane, wbierz inne miejsce");
+                return 0;
             }
-
-
-
         }
         
 

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt_KINO
 {
-    class DaneBiletu
+    [Serializable]
+    public class DaneBiletu
     {
         private double cenaBiletu;
         public double CenaBiletu { get => cenaBiletu; set => cenaBiletu = value; }
