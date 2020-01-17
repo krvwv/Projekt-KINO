@@ -10,6 +10,7 @@ namespace Projekt_KINO
     public enum czy_3D { tak, nie };
     public class Kino
     {
+        private static List<Widz> klienci;
         private string nazwaKina;
         private string miasto;
         private static int iloscSal;
@@ -22,10 +23,15 @@ namespace Projekt_KINO
         public static int IloscSal { get => iloscSal; set => iloscSal = value; }
         public List<Film> Filmy { get => filmy; set => filmy = value; }
         public List<Seans> Seanse { get => seanse; set => seanse = value; }
+        public static List<Widz> Klienci { get => klienci; set => klienci = value; }
 
         static Kino()
         {
             iloscSal = 0;
+        }
+        public Kino()
+        {
+           
         }
         public Kino(string NazwaKina, string Miasto)
         {
@@ -34,6 +40,7 @@ namespace Projekt_KINO
             sale = new List<Sala>();
             filmy = new List<Film>();
             Seanse = new List<Seans>();
+            Klienci = new List<Widz>();
         }
         public void DodajSeans(Seans s)
         {
@@ -104,5 +111,10 @@ namespace Projekt_KINO
             return sb.ToString();
         }
 
+        public static void DodajKlienta(Widz w)
+        {
+            Klienci.Add(w);
+            Console.WriteLine(w);
+        }
     }
 }

@@ -34,13 +34,12 @@ namespace Projekt_KINO
         }
         public static Widz Uzytkownik()
         {
-            Widz def = new Widz("DEF", "DEF", 20);
             Console.WriteLine("Masz już swoje konto? Jeśli tak wpisz 1 oraz zaakceptuj.\nJeżeli chcesz utworzyć konto wpisz 2");
             int wybor = Convert.ToInt32(Console.ReadLine());
             if (wybor==1)
             {
-                //logowanie
-                return def;
+                Widz w = Logowanie();
+                return w;
             }
             else if(wybor==2)
             {
@@ -49,21 +48,46 @@ namespace Projekt_KINO
                 string haslo = Console.ReadLine();
                 int wiek = Convert.ToInt32(Console.ReadLine());
                 Widz widz = new Widz(login, haslo, wiek);
+                Kino.DodajKlienta(widz);
                 Console.WriteLine("Rejestracja zakończona powodzeniem!");
                 return widz;
             }
             else
             {
                 Console.WriteLine("Ups, coś poszło nie tak!");
-                return def; //tutaj jeszcze dopisać powrót do ponownego wyboru
+                return null; //tutaj jeszcze dopisać powrót do ponownego wyboru
             }         
         }
-       public void Logowanie()
+       public static Widz Logowanie()
         {
+            Widz w = new Widz();
             Console.WriteLine("Podaj login i hasło.");
             string login = Console.ReadLine();
+            Widz widz =Kino.Klienci.Find(i => i.Login == login);
             string haslo = Console.ReadLine();
-
+            if(widz!=null)
+            {
+                if(login!=widz.Login)
+                {
+                    Console.WriteLine("Nie ma użytkownika z takim loginem");
+                    return null;
+                }
+                else if(haslo!=widz.Haslo)
+                {
+                    Console.WriteLine("Niepoprawne hasło.");
+                    return null;
+                }
+                else
+                {
+                    Console.WriteLine("Zalogowano pomyślnie!");
+                    return widz;
+                }         
+            }
+            else
+            {
+                Console.WriteLine("Brak uzytkownika!");
+                return null;
+            }
         }
     }
 }

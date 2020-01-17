@@ -37,6 +37,7 @@ namespace Projekt_KINO
             #endregion
             Kino CinemaCity = Funkcje.InizjalizacjaKina();
             Menu menu = new Menu();
+            Widz w = new Widz();
             int wybor;
             do
             {
@@ -53,25 +54,36 @@ namespace Projekt_KINO
                         break;
                     case 3:
                         Widz widz = Funkcje.Uzytkownik();
-                        widz.DodajKlienta(widz);
-                        Console.WriteLine("Wybierz numer seansu, na który chcesz się wybrać: ");
-                        Seans zarezerwowany= Rezerwacja.WybierzSeans(CinemaCity);
-                        //Rezerwacja.WyborMiejsca(zarezerwowany); 
-                        if(Rezerwacja.WyborMiejsca(zarezerwowany)==1)
-                        {                        
-                            Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
-                            widz.DodajRezerwacje(r);                
-                            //tutaj jakas serializacja do xmla ale array nie chce przejsc to trzeba jakos obejsc mądrze
+                        if(widz!=null)
+                        {                           
+                            
+                            Console.WriteLine("Wybierz numer seansu, na który chcesz się wybrać: ");
+                            Seans zarezerwowany = Rezerwacja.WybierzSeans(CinemaCity);
+                            //Rezerwacja.WyborMiejsca(zarezerwowany); 
+                            if (Rezerwacja.WyborMiejsca(zarezerwowany) == 1)
+                            {
+                                Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
+                                widz.DodajRezerwacje(r);
+                                //tutaj jakas serializacja do xmla ale array nie chce przejsc to trzeba jakos obejsc mądrze
+                            }
+                            else
+                            {
+                                Console.WriteLine("Próba rezerwacji nie powiodła się.");
+                            }
+                            widz.PokazRezerwacje();
                         }
                         else
                         {
-                            Console.WriteLine("Próba rezerwacji nie powiodła się.");
-                        } 
-                        widz.PokazRezerwacje();
+                            Console.WriteLine("BŁĄD");
+                        }
+                       
                         //Menu.PokazMenu();
                         break;
                     case 4:
-                        //pokazanie rezerwacji u widza
+                        //do tego trzeba sie zalogowac i potem pokazac rezerwacje
+                        Console.WriteLine("Zaloguj się na swoje konto by zobaczyć rezerwacje");
+                        Widz widz4 = Funkcje.Logowanie();
+                        widz4.PokazRezerwacje();
                         break;
                     case 5:
                         wybor = 666;
