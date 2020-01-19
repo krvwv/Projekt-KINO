@@ -55,16 +55,14 @@ namespace Projekt_KINO
                     case 3:
                         Widz widz = Funkcje.Uzytkownik();
                         if(widz!=null)
-                        {                           
-                            
+                        {                                                  
                             Console.WriteLine("Wybierz numer seansu, na który chcesz się wybrać: ");
                             Seans zarezerwowany = Rezerwacja.WybierzSeans(CinemaCity);
-                            //Rezerwacja.WyborMiejsca(zarezerwowany); 
                             if (Rezerwacja.WyborMiejsca(zarezerwowany) == 1)
                             {
                                 Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
                                 widz.DodajRezerwacje(r);
-                                //tutaj jakas serializacja do xmla ale array nie chce przejsc to trzeba jakos obejsc mądrze
+                                Funkcje.Serializuj(r);
                             }
                             else
                             {
@@ -75,15 +73,16 @@ namespace Projekt_KINO
                         else
                         {
                             Console.WriteLine("BŁĄD");
-                        }
-                       
-                        //Menu.PokazMenu();
+                        }                       
+                        Menu.PokazMenu();
                         break;
                     case 4:
-                        //do tego trzeba sie zalogowac i potem pokazac rezerwacje
                         Console.WriteLine("Zaloguj się na swoje konto by zobaczyć rezerwacje");
                         Widz widz4 = Funkcje.Logowanie();
                         widz4.PokazRezerwacje();
+                        Rezerwacja rr = Funkcje.Deserializuj();
+                        Console.WriteLine(rr);
+                        //Menu.PokazMenu();
                         break;
                     case 5:
                         wybor = 666;

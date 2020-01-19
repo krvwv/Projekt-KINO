@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Projekt_KINO
 {
@@ -88,6 +92,22 @@ namespace Projekt_KINO
                 Console.WriteLine("Brak uzytkownika!");
                 return null;
             }
+        }
+
+        public static void Serializuj(Rezerwacja r)
+        {
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rezerwacja));
+            Stream streamer = new FileStream("rezerwacje.json", FileMode.Create);
+            serializer.WriteObject(streamer, r);
+            streamer.Close();
+        }
+        public static Rezerwacja Deserializuj()
+        {
+            DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(Rezerwacja));
+            Stream reader = new FileStream("rezerwacje.json", FileMode.Open);
+            Object Wynik = deserializer.ReadObject(reader);
+            reader.Close();
+            return (Rezerwacja)Wynik;
         }
     }
 }

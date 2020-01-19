@@ -53,40 +53,5 @@ namespace Projekt_KINO
             return sb.ToString();
         }
         
-
-       /* public void WyborMiejsca()
-        {
-            int rzad, kolumna;
-            Console.WriteLine("Dostępne miejsca: ");           
-            Console.WriteLine(WszystkieMiejsca1.Length);
-            for (int i = 0; i < WszystkieMiejsca1.GetLength(0); i++)
-            {
-                for (int j = 0; j <WszystkieMiejsca1.GetLength(1) ; j++)
-                {
-                    if (WszystkieMiejsca1[i, j] == false)
-                    {
-                        Console.Write("O ");
-                    }
-                    else
-                    {
-                        Console.Write("X ");
-                    }
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine("Podaj najpierw rząd oraz zatwierdź a potem numer miejsca w rzędzie");
-            rzad = Convert.ToInt32(Console.ReadLine());
-            kolumna= Convert.ToInt32(Console.ReadLine());
-            if (WszystkieMiejsca1[rzad,kolumna]==false)
-            {
-                WszystkieMiejsca1[rzad, kolumna] = true;
-                Console.WriteLine("Sukces!");
-
-            }
-            else
-            {
-                Console.WriteLine("Podane miejsce zostało już zarezerwowane, wbierz inne miejsce");
-            }
-        }*/
     }
 }
