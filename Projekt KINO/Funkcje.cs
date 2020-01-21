@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,6 @@ namespace Projekt_KINO
             Film thor = new Film("Thor", "Kenneth Branagh", 114, 12, Film.narracja.dubbing, Film.gatunki.akcja, czy_3D.nie);
             CinemaCity.DodajFilm(spiderman);
             CinemaCity.DodajFilm(thor);
-            //Console.WriteLine(CinemaCity);
             //Seans
             Seans seans1 = new Seans(new DateTime(2020, 1, 20, 10, 30, 0), sala1, spiderman); //dodac sporo seansow
             Seans seans2 = new Seans(new DateTime(2020, 1, 20, 10, 30, 0), sala2, thor);
@@ -52,14 +52,14 @@ namespace Projekt_KINO
                 string haslo = Console.ReadLine();
                 int wiek = Convert.ToInt32(Console.ReadLine());
                 Widz widz = new Widz(login, haslo, wiek);
-                Kino.DodajKlienta(widz);
+                Kino.DodajKlienta(widz);               
                 Console.WriteLine("Rejestracja zakończona powodzeniem!");
                 return widz;
             }
             else
             {
                 Console.WriteLine("Ups, coś poszło nie tak!");
-                return null; //tutaj jeszcze dopisać powrót do ponownego wyboru
+                return null; 
             }         
         }
        public static Widz Logowanie()
@@ -67,6 +67,9 @@ namespace Projekt_KINO
             Widz w = new Widz();
             Console.WriteLine("Podaj login i hasło.");
             string login = Console.ReadLine();
+
+            //List<Widz> widzowie = Funkcje.DeserializujWidzow();
+            //Widz widz = widzowie.Find(i => i.Login == login);
             Widz widz =Kino.Klienci.Find(i => i.Login == login);
             string haslo = Console.ReadLine();
             if(widz!=null)
@@ -94,20 +97,20 @@ namespace Projekt_KINO
             }
         }
 
-        public static void Serializuj(Rezerwacja r)
+        public static void SerializujWidzow()
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rezerwacja));
-            Stream streamer = new FileStream("rezerwacje.json", FileMode.Create);
-            serializer.WriteObject(streamer, r);
-            streamer.Close();
+            using (StreamWriter file = File.CreateText("klienci.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                serializer.Serialize(file, Kino.Klienci);   
+            }
         }
-        public static Rezerwacja Deserializuj()
+        public static List<Widz> DeserializujWidzow()
         {
-            DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(Rezerwacja));
-            Stream reader = new FileStream("rezerwacje.json", FileMode.Open);
-            Object Wynik = deserializer.ReadObject(reader);
-            reader.Close();
-            return (Rezerwacja)Wynik;
+            string json = File.ReadAllText("klienci.json");
+            var widzowie = JsonConvert.DeserializeObject<List<Widz>>(json);
+            return widzowie;
         }
     }
 }

@@ -62,30 +62,30 @@ namespace Projekt_KINO
                             {
                                 Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
                                 widz.DodajRezerwacje(r);
-                                Funkcje.Serializuj(r);
+                                widz.PokazRezerwacje();
                             }
                             else
                             {
                                 Console.WriteLine("Próba rezerwacji nie powiodła się.");
                             }
-                            widz.PokazRezerwacje();
+
                         }
                         else
                         {
                             Console.WriteLine("BŁĄD");
-                        }                       
+                        }
+                        
                         Menu.PokazMenu();
                         break;
                     case 4:
                         Console.WriteLine("Zaloguj się na swoje konto by zobaczyć rezerwacje");
                         Widz widz4 = Funkcje.Logowanie();
                         widz4.PokazRezerwacje();
-                        Rezerwacja rr = Funkcje.Deserializuj();
-                        Console.WriteLine(rr);
-                        //Menu.PokazMenu();
+                        Menu.PokazMenu();
                         break;
                     case 5:
                         wybor = 666;
+                        Funkcje.SerializujWidzow();
                         Console.WriteLine("Do zobaczenia! :)");                     
                         break;
                     default:

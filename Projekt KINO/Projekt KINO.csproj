@@ -62,8 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bilet.cs" />
-    <Compile Include="DaneBiletu.cs" />
     <Compile Include="Film.cs" />
     <Compile Include="Funkcje.cs" />
     <Compile Include="Kino.cs" />

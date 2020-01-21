@@ -11,12 +11,10 @@ namespace Projekt_KINO
         private string numerRezerwacji;
         private Seans seanse;
         private Widz widz;
-        private DaneBiletu bilet;
-        private static int numer;
+         private static int numer;
         public string NumerRezerwacji { get => numerRezerwacji; set => numerRezerwacji = value; }
         public Seans Seans { get => seanse; set => seanse = value; }
         public Widz Widz { get => widz; set => widz = value; }
-        public DaneBiletu Bilet { get => bilet; set => bilet = value; }
         public static int Numer { get => numer; set => numer = value; }
         static Rezerwacja()
         {
@@ -26,13 +24,12 @@ namespace Projekt_KINO
         {
 
         }
-        public Rezerwacja(Seans seans, Widz widz/* ,DaneBiletu bilet*/)
+        public Rezerwacja(Seans seans, Widz widz)
         {
             Numer++;
             NumerRezerwacji = "R" + Numer + "/" + DateTime.Now.Year;
             Seans = seans;
             Widz = widz;
-            //Bilet = bilet;
             if(widz.Wiek<Seans.Film.OgraniczenieWiekowe)
             {
                 throw new NieodpowiedniWiekException("Wiek widza jest nieodpowiedni dla tego filmu.");
@@ -42,9 +39,8 @@ namespace Projekt_KINO
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\nNumer rezerwacji: " + NumerRezerwacji);
-            sb.AppendLine("Dane widza: " + widz.Login +" "+ widz.Haslo);
+            //sb.AppendLine("Dane widza: " + Widz.Login);
             sb.AppendLine("Dane filmu: " + Seans.Film.ToString());
-            //sb.AppendLine("Koszt biletu: " + bilet.KosztBiletu());
             return sb.ToString();
         }
         public static Seans WybierzSeans(Kino k)
@@ -55,10 +51,9 @@ namespace Projekt_KINO
             return se;
         }
         public static int WyborMiejsca(Seans s)
-        {          
+        {
             int rzad, kolumna;
             Console.WriteLine("Dostêpne miejsca: ");
-            Console.WriteLine(s.WszystkieMiejsca1.Length);
             for (int i = 0; i < s.WszystkieMiejsca1.GetLength(0); i++)
             {
                 for (int j = 0; j < s.WszystkieMiejsca1.GetLength(1); j++)
@@ -72,7 +67,7 @@ namespace Projekt_KINO
                         Console.Write("X ");
                     }
                 }
-                Console.WriteLine();
+                Console.WriteLine();    
             }
             Console.WriteLine("Podaj najpierw rz¹d oraz zatwierdŸ a potem numer miejsca w rzêdzie");
             rzad = Convert.ToInt32(Console.ReadLine());
@@ -89,7 +84,6 @@ namespace Projekt_KINO
                 return 0;
             }
         }
-        
-
+       
     }
 }

@@ -43,8 +43,7 @@ namespace Projekt_KINO
             Login = login;
             Haslo = haslo;
             Wiek = wiek;
-            Rezerwacje = new List<Rezerwacja>();
-            
+            Rezerwacje = new List<Rezerwacja>();            
         }
         public void DodajRezerwacje(Rezerwacja r)
         {
@@ -52,7 +51,10 @@ namespace Projekt_KINO
         }
         public void PokazRezerwacje()
         {
-            Rezerwacje.ForEach(Console.WriteLine);
+            foreach (Rezerwacja r in Rezerwacje)
+            {
+                Console.WriteLine(r);
+            }
         }
         
 

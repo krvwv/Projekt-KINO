@@ -114,7 +114,6 @@ namespace Projekt_KINO
         public static void DodajKlienta(Widz w)
         {
             Klienci.Add(w);
-            Console.WriteLine(w);
         }
     }
 }

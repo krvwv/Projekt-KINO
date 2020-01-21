@@ -14,14 +14,12 @@ namespace Projekt_KINO
         private Film film;
         private static int numer;
         private int iloscMiejsc;
-        private int iloscMiejscWolnych;
-        [NonSerialized] private bool[,] WszystkieMiejsca;
+        private bool[,] WszystkieMiejsca;
         public string NumerSeansu { get => numerSeansu; set => numerSeansu = value; }
         public DateTime Data { get => data; set => data = value; }
         public Sala Sala { get => sala; set => sala = value; }
        public Film Film { get => film; set => film = value; }
         public int IloscMiejsc { get => iloscMiejsc; set => iloscMiejsc = value; }
-        public int IloscMiejscWolnych { get => iloscMiejscWolnych; set => iloscMiejscWolnych = value; }
         internal bool[,] WszystkieMiejsca1 { get => WszystkieMiejsca; set => WszystkieMiejsca = value; }
 
         static Seans()
