@@ -29,7 +29,7 @@ namespace Projekt_KINO
             CinemaCity.DodajFilm(spiderman);
             CinemaCity.DodajFilm(thor);
             //Seans
-            Seans seans1 = new Seans(new DateTime(2020, 1, 20, 10, 30, 0), sala1, spiderman); //dodac sporo seansow
+            Seans seans1 = new Seans(new DateTime(2020, 1, 20, 10, 30, 0), sala1, spiderman); 
             Seans seans2 = new Seans(new DateTime(2020, 1, 20, 10, 30, 0), sala2, thor);
             CinemaCity.DodajSeans(seans1);
             CinemaCity.DodajSeans(seans2);
@@ -112,17 +112,5 @@ namespace Projekt_KINO
             return widzowie;
         }
 
-        public static void WriteToJsonFile(Widz w)
-        {
-            var path = "test.xml";
-            using (FileStream fs = new FileStream(path, FileMode.Append))
-            {
-                XmlSerializer xSer = new XmlSerializer(typeof(Widz));
-
-                xSer.Serialize(fs, w);
-            }
-
-
-        }
     }
 }
