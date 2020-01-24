@@ -63,6 +63,7 @@ namespace Projekt_KINO
                                 Rezerwacja r = new Rezerwacja(zarezerwowany, widz);
                                 widz.DodajRezerwacje(r);
                                 widz.PokazRezerwacje();
+                                Console.WriteLine("Sukces!");
                             }
                             else
                             {
@@ -80,7 +81,14 @@ namespace Projekt_KINO
                     case 4:
                         Console.WriteLine("Zaloguj się na swoje konto by zobaczyć rezerwacje");
                         Widz widz4 = Funkcje.Logowanie();
-                        widz4.PokazRezerwacje();
+                        if (widz4!=null)
+                        {
+                            widz4.PokazRezerwacje();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Brak widza o podanych danych.");
+                        }
                         Menu.PokazMenu();
                         break;
                     case 5:

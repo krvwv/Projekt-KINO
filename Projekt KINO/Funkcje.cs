@@ -92,7 +92,6 @@ namespace Projekt_KINO
             }
             else
             {
-                Console.WriteLine("Brak uzytkownika!");
                 return null;
             }
         }

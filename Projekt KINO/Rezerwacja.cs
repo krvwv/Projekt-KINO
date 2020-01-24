@@ -39,7 +39,7 @@ namespace Projekt_KINO
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("\nNumer rezerwacji: " + NumerRezerwacji);
-            //sb.AppendLine("Dane widza: " + Widz.Login);
+            sb.AppendLine("Dane widza: " + Widz.Login);
             sb.AppendLine("Dane filmu: " + Seans.Film.ToString());
             return sb.ToString();
         }
@@ -75,7 +75,7 @@ namespace Projekt_KINO
             if (s.WszystkieMiejsca1[rzad, kolumna] == false)
             {
                 s.WszystkieMiejsca1[rzad, kolumna] = true;
-                Console.WriteLine("Sukces!");
+
                 return 1;
             }
             else
