@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Film.cs" />
     <Compile Include="Funkcje.cs" />
+    <Compile Include="IKino.cs" />
     <Compile Include="Kino.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="NieodpowiedniWiekException.cs" />

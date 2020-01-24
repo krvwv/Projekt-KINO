@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projekt_KINO
 {
     [Serializable]
-    public class Sala
+    public class Sala:ICloneable
     {
         private string NumerSali;
         private int IloscMiejsc;
@@ -63,6 +63,11 @@ namespace Projekt_KINO
                 }
             }
             return Miejsca1;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }

@@ -40,6 +40,10 @@ namespace Projekt_KINO
         public gatunki Gatunek { get => gatunek; set => gatunek = value; }
         public czy_3D Threedimensions { get => threedimensions; set => threedimensions = value; }
 
+        public Film()
+        {
+
+        }
         public Film(string Tytul, string Rezyser, int CzasTrwania, int OgraniczenieWiekowe, narracja RodzajNarracji, gatunki Gatunek,czy_3D td)
         {
             this.Tytul = Tytul;

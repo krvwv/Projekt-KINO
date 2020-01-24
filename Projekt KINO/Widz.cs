@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Projekt_KINO
 {
     [Serializable]
-    public class Widz
+    public class Widz:IEquatable<Widz>
     {
         
         private string login;
@@ -56,7 +56,22 @@ namespace Projekt_KINO
                 Console.WriteLine(r);
             }
         }
-        
 
+        public bool Equals(Widz other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (this.Login == other.Login)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //   throw new NotImplementedException();
+        }
     }
 }

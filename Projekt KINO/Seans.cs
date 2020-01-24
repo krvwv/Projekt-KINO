@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Projekt_KINO
 { 
     [Serializable]
-    public class Seans
+    public class Seans:ICloneable
     {
         private string numerSeansu;
         private DateTime data;
@@ -50,6 +50,10 @@ namespace Projekt_KINO
             sb.AppendLine("Film: " + Film);
             return sb.ToString();
         }
-        
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

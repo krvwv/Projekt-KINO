@@ -40,29 +40,29 @@ namespace Projekt_KINO
         {
             Console.WriteLine("Masz już swoje konto? Jeśli tak wpisz 1 oraz zaakceptuj.\nJeżeli chcesz utworzyć konto wpisz 2");
             int wybor = Convert.ToInt32(Console.ReadLine());
-            if (wybor==1)
+            if (wybor == 1)
             {
                 Widz w = Logowanie();
                 return w;
             }
-            else if(wybor==2)
+            else if (wybor == 2)
             {
                 Console.WriteLine("Podaj swój login, hasło oraz wiek");
                 string login = Console.ReadLine();
                 string haslo = Console.ReadLine();
                 int wiek = Convert.ToInt32(Console.ReadLine());
                 Widz widz = new Widz(login, haslo, wiek);
-                Kino.DodajKlienta(widz);               
+                Kino.DodajKlienta(widz);
                 Console.WriteLine("Rejestracja zakończona powodzeniem!");
                 return widz;
             }
             else
             {
                 Console.WriteLine("Ups, coś poszło nie tak!");
-                return null; 
-            }         
+                return null;
+            }
         }
-       public static Widz Logowanie()
+        public static Widz Logowanie()
         {
             Widz w = new Widz();
             Console.WriteLine("Podaj login i hasło.");
@@ -70,16 +70,16 @@ namespace Projekt_KINO
 
             //List<Widz> widzowie = Funkcje.DeserializujWidzow();
             //Widz widz = widzowie.Find(i => i.Login == login);
-            Widz widz =Kino.Klienci.Find(i => i.Login == login);
+            Widz widz = Kino.Klienci.Find(i => i.Login == login);
             string haslo = Console.ReadLine();
-            if(widz!=null)
+            if (widz != null)
             {
-                if(login!=widz.Login)
+                if (login != widz.Login)
                 {
                     Console.WriteLine("Nie ma użytkownika z takim loginem");
                     return null;
                 }
-                else if(haslo!=widz.Haslo)
+                else if (haslo != widz.Haslo)
                 {
                     Console.WriteLine("Niepoprawne hasło.");
                     return null;
@@ -88,7 +88,7 @@ namespace Projekt_KINO
                 {
                     Console.WriteLine("Zalogowano pomyślnie!");
                     return widz;
-                }         
+                }
             }
             else
             {
@@ -103,7 +103,7 @@ namespace Projekt_KINO
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                serializer.Serialize(file, Kino.Klienci);   
+                serializer.Serialize(file, Kino.Klienci);
             }
         }
         public static List<Widz> DeserializujWidzow()
@@ -111,6 +111,19 @@ namespace Projekt_KINO
             string json = File.ReadAllText("klienci.json");
             var widzowie = JsonConvert.DeserializeObject<List<Widz>>(json);
             return widzowie;
+        }
+
+        public static void WriteToJsonFile(Widz w)
+        {
+            var path = "test.xml";
+            using (FileStream fs = new FileStream(path, FileMode.Append))
+            {
+                XmlSerializer xSer = new XmlSerializer(typeof(Widz));
+
+                xSer.Serialize(fs, w);
+            }
+
+
         }
     }
 }

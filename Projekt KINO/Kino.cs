@@ -8,7 +8,7 @@ namespace Projekt_KINO
 {
     [Serializable]
     public enum czy_3D { tak, nie };
-    public class Kino
+    public class Kino:IKino
     {
         private static List<Widz> klienci;
         private string nazwaKina;
@@ -114,6 +114,10 @@ namespace Projekt_KINO
         public static void DodajKlienta(Widz w)
         {
             Klienci.Add(w);
+        }
+        public void Sortuj()
+        {
+            Klienci.Sort();
         }
     }
 }
