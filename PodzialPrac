@@ -1,0 +1,7 @@
+System rezerwacji miejsc w kinie. 
+Grupa: Natalia Karczmarzyk, Paulina Kosek, Paweł Karwowski, Paulina Miksa.
+Podział pracy:
+Natalia Karczmarzyk – ogólny zarys projektu, menu.
+Paulina Kosek – klasa kino, interfejs kino, klasa film.
+Paweł Karwowski – testy jednostkowe, klasa rezerwacja, klasa funkcje.
+Paulina Miksa – klasy sala, seans, widz.
